@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environments";
+import {UsersResponse} from "../../response/users-response";
+import {UsersComponent} from "../../users/users.component";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +14,9 @@ export class UsersServiceService {
   constructor(private http: HttpClient) { }
 
 
-  getAllData() {
-    this.http.get(this.env + "/users")
+  getAllData(): Observable<UsersResponse[]> {
+   return this.http.get<UsersResponse[]>(this.env + "/users")
+
   }
 
 

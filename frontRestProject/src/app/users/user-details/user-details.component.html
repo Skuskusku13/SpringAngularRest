@@ -1,7 +1,9 @@
-
-
-<div *ngIf="user" class="d-flex flex-column align-items-center mt-5">
-  <input class="my-2 rounded" type="text" [value]="user.iduser" disabled>
-  <input class="my-2 rounded" type="text" [value]="user.nom" disabled>
-  <input class="my-2 rounded" type="text" [value]="user.prenom" disabled>
+<div *ngIf="user">
+    <button (click)="deleteOneUser()" class="btn btn-danger" type="submit">Supprimer</button>
+    <div class="d-flex flex-column align-items-center mt-5">
+        <input class="my-2 rounded" type="text" [value]="user.iduser" disabled>
+        <input class="my-2 rounded" type="text" [value]="user.nom" disabled>
+        <input class="my-2 rounded" type="text" [value]="user.prenom" disabled>
+    </div>
 </div>
+

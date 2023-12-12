@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../services/serviceUser/users.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UsersResponse} from "../../response/userResponse/users-response";
 
 @Component({
@@ -13,7 +13,8 @@ export class UserDetailsComponent implements OnInit{
   userId: any;
   user: UsersResponse;
   constructor(private userService: UsersService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,6 +28,15 @@ export class UserDetailsComponent implements OnInit{
             this.user = userResponse
           })
       })
+  }
+
+  deleteOneUser() {
+    this.route.params.subscribe(params => {
+      this.userId = params['id']
+      this.userService.deleteOneData(this.userId).subscribe(() => {
+        this.router.navigate(["/users"])
+      })
+    })
   }
 
 

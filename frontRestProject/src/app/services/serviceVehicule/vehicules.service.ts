@@ -18,4 +18,8 @@ export class VehiculesService {
   getOneData(id: any): Observable<VehiculeResponse> {
     return this.http.get<VehiculeResponse>(this.env + "/vehicules/" + id);
   }
+
+  deleteOneVehicule(id: any) {
+    return this.http.delete(this.env + "/vehicules/" + id);
+  }
 }

@@ -7,13 +7,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {HttpClientModule} from "@angular/common/http";
 import { UsersComponent } from './users/users.component';
 import { VehiculesComponent } from './vehicules/vehicules.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     UsersComponent,
-    VehiculesComponent
+    VehiculesComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

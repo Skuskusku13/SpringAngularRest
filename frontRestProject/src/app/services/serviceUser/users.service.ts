@@ -19,6 +19,9 @@ export class UsersService {
   getOneData(id: any): Observable<UsersResponse> {
     return this.http.get<UsersResponse>(this.env + "/users/" + id)
   }
+  deleteOneData(id: any): any {
+    return this.http.delete(this.env + "/users/" + id)
+  }
 
 
 }

@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { UsersComponent } from './users/users.component';
 import { VehiculesComponent } from './vehicules/vehicules.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
+import {VehiculeDetailsComponent} from "./vehicules/vehicule-details/vehicule-details.component";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
     NavbarComponent,
     UsersComponent,
     VehiculesComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    VehiculeDetailsComponent
   ],
   imports: [
     BrowserModule,

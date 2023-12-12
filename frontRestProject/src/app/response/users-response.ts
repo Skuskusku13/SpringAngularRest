@@ -1,5 +1,5 @@
 export class UsersResponse {
-  iduser: number;
+  iduser: any;
   nom: string;
   prenom: string
 }

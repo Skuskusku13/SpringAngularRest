@@ -1,1 +1,9 @@
-<p>users works!</p>
+<div class="d-flex justify-content-evenly mt-5">
+  <div *ngFor="let user of users" class="card" style="width: 18rem;" >
+    <img class="card-img-top" src="assets/avatar.png" alt="avatar">
+    <div class="card-body">
+      <h5 class="card-title">{{ user.nom }}  {{ user.prenom }}</h5>
+      <a (click)="userDetail(user.iduser)" class="btn btn-primary">Détails</a>
+    </div>
+  </div>
+</div>

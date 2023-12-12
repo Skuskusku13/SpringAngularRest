@@ -16,7 +16,9 @@ export class UsersServiceService {
 
   getAllData(): Observable<UsersResponse[]> {
    return this.http.get<UsersResponse[]>(this.env + "/users")
-
+  }
+  getOneData(id: any): Observable<UsersResponse> {
+    return this.http.get<UsersResponse>(this.env + "/users/" + id)
   }
 
 

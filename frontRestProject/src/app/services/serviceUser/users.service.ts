@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environments";
-import {UsersResponse} from "../../response/users-response";
-import {UsersComponent} from "../../users/users.component";
+import {UsersResponse} from "../../response/userResponse/users-response";
 import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersServiceService {
+export class UsersService {
 
-  env = environment.apiUrl
+  env = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
 

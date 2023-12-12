@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersServiceService} from "../../services/serviceUser/users-service.service";
+import {UsersService} from "../../services/serviceUser/users.service";
 import {ActivatedRoute} from "@angular/router";
-import {UsersResponse} from "../../response/users-response";
+import {UsersResponse} from "../../response/userResponse/users-response";
 
 @Component({
   selector: 'app-user-details',
@@ -12,7 +12,7 @@ export class UserDetailsComponent implements OnInit{
 
   userId: any;
   user: UsersResponse;
-  constructor(private userService: UsersServiceService,
+  constructor(private userService: UsersService,
               private route: ActivatedRoute) {
   }
 

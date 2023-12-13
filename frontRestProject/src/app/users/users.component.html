@@ -1,6 +1,6 @@
 <div>
     <button
-      [disabled]="emptyValue ? (nom==='' || prenom ==='') : false"
+      [disabled]="(emptyValue ? (nom==='' || prenom ==='') : false) && valueButton!=='Ajouter'"
       (click)="addUser()" class="btn btn-success">{{ valueButton }}</button>
     <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning">Annuler</button>
     <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">

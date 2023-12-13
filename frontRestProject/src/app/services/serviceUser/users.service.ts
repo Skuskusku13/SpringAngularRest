@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environments";
 import {UsersResponse} from "../../response/userResponse/users-response";
 import {Observable} from "rxjs";
 import {UserRequest} from "../../request/requestUser/user-request";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 @Injectable({
@@ -26,9 +27,12 @@ export class UsersService {
   }
   createUser(request: UserRequest) {
     let url = this.env + "/users";
-    this.http.post<UserRequest>(url, request).subscribe((resolve) => {
-      console.log(resolve)
-    })
+    try {
+      return this.http.post<UserRequest>(url, request)
+    } catch (reason) {
+      console.log("error > ", reason)
+    }
+    return null;
   }
 
 

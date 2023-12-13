@@ -13,10 +13,10 @@ export class UsersComponent implements OnInit {
 
   users: UsersResponse[] = [];
   valueButton: string;
-  addOrOk: boolean;
   nom: string = "";
   prenom: string = "";
   request: UserRequest;
+  addOrOk: boolean = false;
   cancelBool: boolean = false;
   emptyValue: boolean = false;
 
@@ -26,7 +26,6 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers();
-    this.addOrOk = false;
     this.valueButton = "Ajouter"
   }
 
@@ -52,6 +51,7 @@ export class UsersComponent implements OnInit {
           prenom: this.prenom.trim(),
           nom: this.nom.trim()
         })
+        console.log(this.request)
         this.valueButton = "Ajouter"
         this.addOrOk = this.cancelBool = false;
         this.getAllUsers()
@@ -66,5 +66,6 @@ export class UsersComponent implements OnInit {
     this.valueButton = "Ajouter";
     this.addOrOk = false
     this.nom = this.prenom = "";
+    this.request = {nom: this.nom, prenom: this.prenom}
   }
 }

@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environments";
 import {HttpClient} from "@angular/common/http";
 import {VehiculeResponse} from "../../response/vehiculeResponse/vehicule-response";
 import {Observable} from "rxjs";
+import {VehiculeRequest} from "../../request/requestVehicule/vehicule-request";
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,15 @@ export class VehiculesService {
 
   deleteOneVehicule(id: any) {
     return this.http.delete(this.env + "/vehicules/" + id);
+  }
+
+  createOneVehicule(request: VehiculeRequest) {
+   let url = this.env + "/vehicules";
+   try {
+     return this.http.post<VehiculeRequest>(url, request)
+   } catch (reaseon) {
+     console.log("error > ", reaseon)
+   }
+   return null
   }
 }

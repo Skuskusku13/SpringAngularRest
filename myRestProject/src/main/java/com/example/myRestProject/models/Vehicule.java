@@ -22,6 +22,7 @@ public class Vehicule {
 
     private String miseCirculation;
 
+
     private String dateSortie;
 
     @OneToOne

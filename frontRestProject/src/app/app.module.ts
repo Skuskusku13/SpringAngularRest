@@ -9,6 +9,7 @@ import { UsersComponent } from './users/users.component';
 import { VehiculesComponent } from './vehicules/vehicules.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import {VehiculeDetailsComponent} from "./vehicules/vehicule-details/vehicule-details.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {VehiculeDetailsComponent} from "./vehicules/vehicule-details/vehicule-de
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

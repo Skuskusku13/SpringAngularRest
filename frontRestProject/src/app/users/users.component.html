@@ -1,9 +1,31 @@
-<div class="d-flex justify-content-evenly mt-5">
-  <div *ngFor="let user of users" class="card" style="width: 18rem;" >
-    <img class="card-img-top" src="assets/avatar.png" alt="avatar">
-    <div class="card-body">
-      <h5 class="card-title">{{ user.nom }}  {{ user.prenom }}</h5>
-      <a (click)="userDetail(user.iduser)" class="btn btn-primary">Détails</a>
+<div>
+    <button
+      [disabled]="emptyValue ? (nom==='' || prenom ==='') : false"
+      (click)="addUser()" class="btn btn-success">{{ valueButton }}</button>
+    <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning">Annuler</button>
+    <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">
+        <div class="w-25">
+            <p>Nom</p>
+            <input type="text" name="nom" [(ngModel)]="nom">
+            <p>Prénom</p>
+            <input type="text" name="prenom" [(ngModel)]="prenom">
+        </div>
+    </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let user of users">
+        <div class="grid-item mt-5 d-flex justify-content-center">
+          <div class="card mx-3" style="width: 18rem;">
+            <img class="card-img-top" src="assets/avatar.png" alt="bison">
+            <div class="card-body">
+              <h5 class="card-title"> {{ user.iduser }} --- {{ user.nom }} {{ user.prenom }}</h5>
+              <a (click)="userDetail(user.iduser)" class="btn btn-primary">Détails</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>

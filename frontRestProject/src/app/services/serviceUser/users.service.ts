@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environments";
 import {UsersResponse} from "../../response/userResponse/users-response";
 import {Observable} from "rxjs";
+import {UserRequest} from "../../request/requestUser/user-request";
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,12 @@ export class UsersService {
   }
   deleteOneData(id: any): any {
     return this.http.delete(this.env + "/users/" + id)
+  }
+  createUser(request: UserRequest) {
+    let url = this.env + "/users";
+    this.http.post<UserRequest>(url, request).subscribe((resolve) => {
+      console.log(resolve)
+    })
   }
 
 

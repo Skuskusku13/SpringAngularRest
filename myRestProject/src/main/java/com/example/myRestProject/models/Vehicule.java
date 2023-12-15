@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.apache.catalina.User;
 
 import java.util.Date;
+import java.util.Optional;
 
 
 @Setter
@@ -37,4 +38,14 @@ public class Vehicule {
         this.miseCirculation = miseCirculation;
         this.dateSortie = dateSortie;
     }
+
+    public Vehicule(String marque, String immat, String miseCirculation, String dateSortie, Users users) {
+        this.marque = marque;
+        this.immat = immat;
+        this.miseCirculation = miseCirculation;
+        this.dateSortie = dateSortie;
+        this.users = users;
+    }
+
+
 }

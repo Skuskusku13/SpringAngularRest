@@ -1,5 +1,6 @@
-export class VehiculeResponse {
-  idvehicule: any;
+
+export class VehiculeRequest {
+  idvehicule?:string;
   marque: string;
   immat: string;
   miseCirculation: string;

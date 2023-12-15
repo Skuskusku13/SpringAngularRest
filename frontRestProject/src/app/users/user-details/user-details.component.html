@@ -1,9 +1,19 @@
 <div *ngIf="user">
-    <button (click)="deleteOneUser()" class="btn btn-danger" type="submit">Supprimer</button>
-    <div class="d-flex flex-column align-items-center mt-5">
-        <input class="my-2 rounded" type="text" [value]="user.iduser" disabled>
-        <input class="my-2 rounded" type="text" [value]="user.nom" disabled>
-        <input class="my-2 rounded" type="text" [value]="user.prenom" disabled>
-    </div>
+  <div class="d-flex flex-column align-items-center mt-5">
+    <input class="my-2 rounded form-control w-25" type="text" [value]="iduser" disabled>
+    <input class="my-2 rounded form-control w-25" type="text" [(ngModel)]="nom" [value]="nom" [disabled]="disabled">
+    <input class="my-2 rounded form-control w-25" type="text" [(ngModel)]="prenom" [value]="prenom" [disabled]="disabled">
+  </div>
+  <div class="d-flex justify-content-center m-5">
+    <button (click)="deleteOneUser()" class="btn btn-danger mx-3" type="submit">Supprimer</button>
+    <button (click)="editOrSave()" class="btn mx-3"
+            [ngClass]="disabled ? 'btn-warning' : 'btn-success'"
+            type="submit">{{ disabled ? 'Modifier' : 'Sauvegarder' }}
+    </button>
+    <button (click)="changeDisabled()"
+            *ngIf="!disabled" class="btn btn-warning mx-3"
+            type="submit">Annuler
+    </button>
+  </div>
 </div>
 

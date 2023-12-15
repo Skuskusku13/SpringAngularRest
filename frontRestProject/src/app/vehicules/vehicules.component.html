@@ -1,16 +1,42 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6" *ngFor="let vehicule of vehicules">
-            <div class="grid-item mt-5">
-                <div class="card mx-3" style="width: 18rem;">
-                    <img class="card-img-top" src="assets/bison.png" alt="bison">
-                    <div class="card-body">
-                        <h5 class="card-title"> {{ vehicule.idvehicule }} --- {{ vehicule.marque }}</h5>
-                        <h6>{{ vehicule.immat }}</h6>
-                        <a (click)="vehiculeDetails(vehicule.idvehicule)" class="btn btn-primary">Détails</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div>
+  <button
+    [disabled]="(emptyValue ? (marque==='' || immat ==='' || !dateSortie || !iduserSelected) : false) && valueButton!=='Ajouter'"
+    (click)="addVehicule()" class="btn btn-success">{{ valueButton }}</button>
+  <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning">Annuler</button>
+  <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">
+    <div class="w-25">
+      <p>Marque</p>
+      <input type="text" name="marque" [(ngModel)]="marque">
+      <p>immat</p>
+      <input type="text" name="immat" [(ngModel)]="immat">
+      <p>Date de sortie</p>
+      <input type="date" name="dateSortie" [(ngModel)]="dateSortie">
+      <p>Date de mise en circulation</p>
+      <input type="date" name="miseCirculation" [(ngModel)]="miseCirculation">
+      <p>Le véhicule appartient à </p>
+      <select [(ngModel)]="iduserSelected" (ngModelChange)="userSelected()">
+        <option value="" selected="selected" disabled hidden>Choisir un user</option>
+        <option *ngFor="let user of users" name="iduser">
+          {{ user.iduser + " --> " + user.nom + " " + user.prenom }}
+        </option>
+      </select>
     </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let vehicule of vehicules">
+        <div class="grid-item mt-5 d-flex justify-content-center">
+          <div class="card mx-3" style="width: 18rem;">
+            <img class="card-img-top" src="assets/bison.png" alt="bison">
+            <div class="card-body">
+              <h5 class="card-title"> {{ vehicule.idvehicule }} --- {{ vehicule.marque }}</h5>
+              <h6>{{ vehicule.immat }}</h6>
+              <a (click)="vehiculeDetails(vehicule.idvehicule)" class="btn btn-primary">Détails</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

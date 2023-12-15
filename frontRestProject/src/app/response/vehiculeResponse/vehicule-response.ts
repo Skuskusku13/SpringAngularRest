@@ -4,4 +4,5 @@ export class VehiculeResponse {
   immat: string;
   miseCirculation: string;
   dateSortie: string;
+  iduser: number;
 }

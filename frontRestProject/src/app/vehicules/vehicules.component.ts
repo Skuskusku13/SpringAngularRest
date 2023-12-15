@@ -3,6 +3,8 @@ import {VehiculesService} from "../services/serviceVehicule/vehicules.service";
 import {VehiculeResponse} from "../response/vehiculeResponse/vehicule-response";
 import {Router} from "@angular/router";
 import {VehiculeRequest} from "../request/requestVehicule/vehicule-request";
+import {UsersService} from "../services/serviceUser/users.service";
+import {UsersResponse} from "../response/userResponse/users-response";
 
 @Component({
     selector: 'app-vehicules',
@@ -17,17 +19,21 @@ export class VehiculesComponent implements OnInit {
     miseCirculation: string = "";
     dateSortie: string = "";
     valueButton: string = "";
+    iduserSelected: string = "";
     request: VehiculeRequest;
     addOrOk: boolean = false;
     cancelBool: boolean = false;
     emptyValue: boolean = false;
+    users: UsersResponse[] = []
 
     constructor(private vehiculesService: VehiculesService,
+                private userService: UsersService,
                 private router: Router) {
     }
 
     ngOnInit(): void {
         this.getAllVehicules()
+        this.getAllUsers();
         this.valueButton = "Ajouter"
     }
 
@@ -38,8 +44,26 @@ export class VehiculesComponent implements OnInit {
             });
     }
 
+    getAllUsers() {
+        this.userService.getAllData()
+            .subscribe((userResponse: UsersResponse[]) => {
+                this.users = userResponse;
+            });
+    }
+
     vehiculeDetails(id: any) {
         return this.router.navigate(["/vehicules/", id]);
+    }
+
+    userSelected() {
+        // // régler le problème de la liste qui affiche pas le nom du champs select
+        console.log(parseInt(this.iduserSelected))
+        if(!parseInt(this.iduserSelected.split("").at(0) + "")) {
+            return false;
+        } else {
+            this.iduserSelected = this.iduserSelected.split("").at(0) + "";
+            return true;
+        }
     }
 
     addVehicule() {
@@ -53,7 +77,8 @@ export class VehiculesComponent implements OnInit {
                     marque: this.marque.trim(),
                     immat: this.immat.trim(),
                     miseCirculation: this.miseCirculation.trim(),
-                    dateSortie: this.dateSortie.trim()
+                    dateSortie: this.dateSortie.trim(),
+                    iduser: parseInt(this.iduserSelected)
                 })?.subscribe((vehicule) => {
                   console.log(vehicule)
                 })
@@ -71,7 +96,8 @@ export class VehiculesComponent implements OnInit {
         this.valueButton = "Ajouter";
         this.addOrOk = false
         this.marque = this.immat = this.miseCirculation = this.dateSortie = "";
-        this.request = {marque: this.marque, immat: this.immat, miseCirculation: this.miseCirculation, dateSortie: this.dateSortie}
+        this.iduserSelected = "";
+        this.request = {marque: this.marque, immat: this.immat, miseCirculation: this.miseCirculation, dateSortie: this.dateSortie, iduser: parseInt(this.iduserSelected)}
     }
 
 }

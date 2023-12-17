@@ -57,7 +57,8 @@ export class VehiculesComponent implements OnInit {
 
     userSelected() {
         // // régler le problème de la liste qui affiche pas le nom du champs select
-        console.log(parseInt(this.iduserSelected))
+        // console.log(parseInt(this.iduserSelected.split("").at(0) + ""))
+      console.log(parseInt(this.iduserSelected))
         if(!parseInt(this.iduserSelected.split("").at(0) + "")) {
             return false;
         } else {
@@ -79,12 +80,12 @@ export class VehiculesComponent implements OnInit {
                     miseCirculation: this.miseCirculation.trim(),
                     dateSortie: this.dateSortie.trim(),
                     iduser: parseInt(this.iduserSelected)
-                })?.subscribe((vehicule) => {
-                  console.log(vehicule)
                 })
                 this.valueButton = "Ajouter"
                 this.addOrOk = this.cancelBool = false;
-                this.getAllVehicules()
+                setTimeout(() => {
+                  this.getAllVehicules()
+                }, 500)
             } else {
                 this.emptyValue = true;
             }

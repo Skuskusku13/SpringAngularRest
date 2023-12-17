@@ -40,8 +40,7 @@ public class VehiculeController {
         String immat = body.get("immat");
         String miseCirculation = body.get("miseCirculation");
         String dateSortie = body.get("dateSortie");
-        Optional<Users> user;
-        user = userRepository.findById(Integer.parseInt(body.get("iduser")));
+        Optional<Users> user = userRepository.findById(Integer.parseInt(body.get("iduser")));
         return vehiculesRepositories.save(new Vehicule(marque, immat, miseCirculation, dateSortie, user.get()));
     }
 
@@ -53,6 +52,11 @@ public class VehiculeController {
         vehicule.setImmat(body.get("immat"));
         vehicule.setMiseCirculation(body.get("miseCirculation"));
         vehicule.setDateSortie(body.get("dateSortie"));
+        Optional<Users> user = userRepository.findById(Integer.parseInt(body.get("iduser")));
+        user.get().setIduser(Integer.parseInt(body.get("iduser")));
+
+        System.out.println(vehicule);
+
         return vehiculesRepositories.save(vehicule);
     }
 

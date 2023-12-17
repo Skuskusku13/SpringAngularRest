@@ -5,9 +5,9 @@
     <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning">Annuler</button>
     <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">
         <div class="w-25">
-            <p>Nom</p>
+            <label>Nom</label>
             <input type="text" name="nom" [(ngModel)]="nom">
-            <p>Prénom</p>
+            <label>Prénom</label>
             <input type="text" name="prenom" [(ngModel)]="prenom">
         </div>
     </div>

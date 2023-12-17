@@ -1,6 +1,6 @@
 
 export class VehiculeRequest {
-  idvehicule?:string;
+  idvehicule?:number;
   marque: string;
   immat: string;
   miseCirculation: string;

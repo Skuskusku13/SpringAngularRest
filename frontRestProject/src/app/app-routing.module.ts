@@ -4,12 +4,18 @@ import {UsersComponent} from "./users/users.component";
 import {VehiculesComponent} from "./vehicules/vehicules.component";
 import {UserDetailsComponent} from "./users/user-details/user-details.component";
 import {VehiculeDetailsComponent} from "./vehicules/vehicule-details/vehicule-details.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {
+    path: "",
+    component: HomeComponent
+  },
+  {
     path: "users",
     component: UsersComponent
-  },  {
+  },
+  {
     path: "users/:id",
     component: UserDetailsComponent
   },

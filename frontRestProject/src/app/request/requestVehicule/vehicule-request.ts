@@ -6,4 +6,9 @@ export class VehiculeRequest {
   miseCirculation: string;
   dateSortie: string;
   iduser: number;
+  // users: {
+  //   iduser: number;
+  //   nom: string;
+  //   prenom: string;
+  // }
 }

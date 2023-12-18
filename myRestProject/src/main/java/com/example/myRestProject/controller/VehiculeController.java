@@ -53,7 +53,7 @@ public class VehiculeController {
         vehicule.setMiseCirculation(body.get("miseCirculation"));
         vehicule.setDateSortie(body.get("dateSortie"));
         Optional<Users> user = userRepository.findById(Integer.parseInt(body.get("iduser")));
-        user.get().setIduser(Integer.parseInt(body.get("iduser")));
+        vehicule.setUsers(user.get());
 
         System.out.println(vehicule);
 

@@ -1,0 +1,12 @@
+<div class="card mx-3" style="width: 18rem;">
+  <img class="card-img-top" [src]="componentImages"
+       [alt]="componentImages"
+       [style.padding.px]="componentType === 'users' ? 5 : 0"
+       [style.object-fit]="'contain'"
+       width="300" height="300">
+  <div class="card-body">
+    <h5 class="card-title"> {{ componentType | titlecase }}</h5>
+    <p class="card-text">{{ componentText }}</p>
+    <a [routerLink]="componentLink" class="btn btn-primary">Let's go !</a>
+  </div>
+</div>

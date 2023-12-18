@@ -1,4 +1,4 @@
-<div>
+<div class="my-5">
     <button
       [disabled]="(emptyValue ? (nom==='' || prenom ==='') : false) && valueButton!=='Ajouter'"
       (click)="addUser()" class="btn btn-success">{{ valueButton }}</button>
@@ -6,9 +6,9 @@
     <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">
         <div class="w-25">
             <label>Nom</label>
-            <input type="text" name="nom" [(ngModel)]="nom">
-            <label>Prénom</label>
-            <input type="text" name="prenom" [(ngModel)]="prenom">
+            <input class="form-control" type="text" name="nom" [(ngModel)]="nom">
+            <label class="mt-3">Prénom</label>
+            <input class="form-control" type="text" name="prenom" [(ngModel)]="prenom">
         </div>
     </div>
 

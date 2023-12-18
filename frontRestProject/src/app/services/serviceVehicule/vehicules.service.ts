@@ -37,8 +37,6 @@ export class VehiculesService {
 
     editOneVehicule(request: VehiculeRequest) {
         let url = this.env + "/vehicules/" + request.idvehicule;
-        return this.http.put<VehiculeRequest>(url, request).subscribe((resolve) => {
-          console.log(resolve)
-        })
+        return this.http.put<VehiculeRequest>(url, request);
     }
 }

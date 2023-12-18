@@ -17,7 +17,6 @@ export class VehiculeDetailsComponent implements OnInit{
   vehiculId: any;
   vehicule: VehiculeResponse;
   users: UsersResponse[] = [];
-  oneUser: UsersResponse;
   iduserSelected: string;
   vehiculeRequest: VehiculeRequest;
 
@@ -27,6 +26,12 @@ export class VehiculeDetailsComponent implements OnInit{
   miseCirculation: string = "";
   dateSortie: string = "";
   iduser: number;
+
+  objectUser: {
+    iduser: number;
+    nomUser: string;
+    prenomUser: string;
+  }
 
   nomUser: string = "";
   prenomUser: string = "";
@@ -57,7 +62,6 @@ export class VehiculeDetailsComponent implements OnInit{
             this.nomUser = vehiculeResponse.users.nom
             this.prenomUser = vehiculeResponse.users.prenom
             this.iduserSelected = this.iduser + "";
-            console.log("iduser ", this.iduserSelected)
           })
     })
   }
@@ -88,11 +92,14 @@ export class VehiculeDetailsComponent implements OnInit{
         immat: this.immat,
         miseCirculation: this.miseCirculation,
         dateSortie: this.dateSortie,
-        iduser: this.iduser,
+        iduser: this.iduser
       }
-        console.log(this.iduser, parseInt(this.iduserSelected))
-        console.table(this.vehiculeRequest)
-      this.vehiculeService.editOneVehicule(this.vehiculeRequest);
+      this.vehiculeService.editOneVehicule(this.vehiculeRequest).subscribe(() => {
+        this.userService.getOneData(this.iduser).subscribe((resp: UsersResponse) => {
+          this.nomUser = resp.nom
+          this.prenomUser = resp.prenom
+        })
+      });
     }
   }
 
@@ -110,11 +117,21 @@ export class VehiculeDetailsComponent implements OnInit{
   userSelected() {
     // // régler le problème de la liste qui affiche pas le nom du champs select
     const onlyDigits = this.iduserSelected.match(/\d+/);
-    console.log("userSelect", parseInt(this.iduserSelected))
       if (onlyDigits){
         this.iduserSelected = onlyDigits?.join("");
         this.iduser = parseInt(this.iduserSelected)
         return true;
+      }
+
+      if(this.iduserSelected){
+        const selectedUser = this.users.find(user => user.iduser === parseInt(this.iduserSelected, 10));
+
+        if (selectedUser) {
+            this.iduser = selectedUser.iduser;
+            this.nomUser = selectedUser.nom;
+            this.prenomUser = selectedUser.prenom;
+            return true;
+        }
       }
       return false;
   }

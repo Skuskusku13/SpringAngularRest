@@ -1,8 +1,4 @@
 <div class="my-5">
-  <button
-    [disabled]="(emptyValue ? (marque==='' || immat ==='' || !dateSortie || !iduserSelected) : false) && valueButton!=='Ajouter'"
-    (click)="addVehicule()" class="btn btn-success">{{ valueButton }}</button>
-  <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning">Annuler</button>
   <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">
     <div class="w-25">
       <label>Marque</label>
@@ -21,6 +17,12 @@
         </option>
       </select>
     </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5 mb-3">
+    <button
+            [disabled]="(emptyValue ? (marque==='' || immat ==='' || !dateSortie || !iduserSelected) : false) && valueButton!=='Ajouter'"
+            (click)="addVehicule()" class="btn btn-success mx-3">{{ valueButton }}</button>
+    <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning mx-3">Annuler</button>
   </div>
 
   <div class="container">

@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {VehiculeResponse} from "../../response/vehiculeResponse/vehicule-response";
 import {Observable} from "rxjs";
 import {VehiculeRequest} from "../../request/requestVehicule/vehicule-request";
+import {resolve} from "@angular/compiler-cli";
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,13 @@ export class VehiculesService {
 
     createOneVehicule(request: VehiculeRequest) {
         let url = this.env + "/vehicules";
-        return this.http.post<VehiculeRequest>(url, request)
+        return this.http.post<VehiculeRequest>(url, request).subscribe((resolve) => {
+          console.log(resolve)
+        })
+    }
+
+    editOneVehicule(request: VehiculeRequest) {
+        let url = this.env + "/vehicules/" + request.idvehicule;
+        return this.http.put<VehiculeRequest>(url, request);
     }
 }

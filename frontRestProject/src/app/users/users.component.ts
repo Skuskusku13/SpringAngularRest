@@ -54,7 +54,9 @@ export class UsersComponent implements OnInit {
         console.log(this.request)
         this.valueButton = "Ajouter"
         this.addOrOk = this.cancelBool = false;
-        this.getAllUsers()
+        setTimeout(() => {
+          this.getAllUsers()
+        }, 1000)
       } else {
         this.emptyValue = true;
       }

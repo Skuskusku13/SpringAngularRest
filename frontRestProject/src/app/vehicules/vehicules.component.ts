@@ -25,6 +25,7 @@ export class VehiculesComponent implements OnInit {
     cancelBool: boolean = false;
     emptyValue: boolean = false;
     users: UsersResponse[] = []
+    iduser: number;
 
     constructor(private vehiculesService: VehiculesService,
                 private userService: UsersService,
@@ -55,15 +56,23 @@ export class VehiculesComponent implements OnInit {
         return this.router.navigate(["/vehicules/", id]);
     }
 
-    userSelected() {
-        // // régler le problème de la liste qui affiche pas le nom du champs select
-        console.log(parseInt(this.iduserSelected))
-        if(!parseInt(this.iduserSelected.split("").at(0) + "")) {
-            return false;
-        } else {
-            this.iduserSelected = this.iduserSelected.split("").at(0) + "";
-            return true;
+    userSelected(): boolean {
+      const onlyDigits = this.iduserSelected.match(/\d+/);
+      if (onlyDigits) {
+        this.iduserSelected = onlyDigits?.join("");
+        this.iduser = parseInt(this.iduserSelected)
+        return true;
+      }
+
+      if (this.iduserSelected) {
+        const selectedUser = this.users.find(user => user.iduser === parseInt(this.iduserSelected, 10));
+
+        if (selectedUser) {
+          this.iduser = selectedUser.iduser;
+          return true;
         }
+      }
+      return false;
     }
 
     addVehicule() {
@@ -79,12 +88,12 @@ export class VehiculesComponent implements OnInit {
                     miseCirculation: this.miseCirculation.trim(),
                     dateSortie: this.dateSortie.trim(),
                     iduser: parseInt(this.iduserSelected)
-                })?.subscribe((vehicule) => {
-                  console.log(vehicule)
                 })
                 this.valueButton = "Ajouter"
                 this.addOrOk = this.cancelBool = false;
-                this.getAllVehicules()
+                setTimeout(() => {
+                  this.getAllVehicules()
+                }, 500)
             } else {
                 this.emptyValue = true;
             }

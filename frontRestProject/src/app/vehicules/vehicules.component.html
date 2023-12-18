@@ -1,26 +1,28 @@
-<div>
-  <button
-    [disabled]="(emptyValue ? (marque==='' || immat ==='' || !dateSortie || !iduserSelected) : false) && valueButton!=='Ajouter'"
-    (click)="addVehicule()" class="btn btn-success">{{ valueButton }}</button>
-  <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning">Annuler</button>
+<div class="my-5">
   <div *ngIf="addOrOk" class="d-flex flex-column align-items-center">
     <div class="w-25">
-      <p>Marque</p>
-      <input type="text" name="marque" [(ngModel)]="marque">
-      <p>immat</p>
-      <input type="text" name="immat" [(ngModel)]="immat">
-      <p>Date de sortie</p>
-      <input type="date" name="dateSortie" [(ngModel)]="dateSortie">
-      <p>Date de mise en circulation</p>
-      <input type="date" name="miseCirculation" [(ngModel)]="miseCirculation">
-      <p>Le véhicule appartient à </p>
-      <select [(ngModel)]="iduserSelected" (ngModelChange)="userSelected()">
+      <label>Marque</label>
+      <input type="text" class="form-control" name="marque" [(ngModel)]="marque">
+      <label class="mt-3">immat</label>
+      <input type="text" class="form-control" name="immat" [(ngModel)]="immat">
+      <label class="mt-3">Date de sortie</label>
+      <input type="date" class="form-control" name="dateSortie" [(ngModel)]="dateSortie">
+      <label class="mt-3">Date de mise en circulation</label>
+      <input type="date" class="form-control" name="miseCirculation" [(ngModel)]="miseCirculation">
+      <label class="mt-3">Le véhicule appartient à </label>
+      <select [(ngModel)]="iduserSelected" class="form-select" (ngModelChange)="userSelected()" name="iduser">
         <option value="" selected="selected" disabled hidden>Choisir un user</option>
-        <option *ngFor="let user of users" name="iduser">
+        <option *ngFor="let user of users" [value]="user.iduser">
           {{ user.iduser + " --> " + user.nom + " " + user.prenom }}
         </option>
       </select>
     </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5 mb-3">
+    <button
+            [disabled]="(emptyValue ? (marque==='' || immat ==='' || !dateSortie || !iduserSelected) : false) && valueButton!=='Ajouter'"
+            (click)="addVehicule()" class="btn btn-success mx-3">{{ valueButton }}</button>
+    <button *ngIf="cancelBool" (click)="cancelAction()" class="btn btn-warning mx-3">Annuler</button>
   </div>
 
   <div class="container">

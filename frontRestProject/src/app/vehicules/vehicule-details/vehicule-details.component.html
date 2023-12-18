@@ -1,10 +1,29 @@
 <div *ngIf="vehicule">
-    <button (click)="deleteOneVehicule()" class="btn btn-danger" type="submit">Supprimer</button>
     <div *ngIf="vehicule" class="d-flex flex-column align-items-center mt-5">
-        <input class="my-2 rounded" type="text" [value]="vehicule.idvehicule" disabled>
-        <input class="my-2 rounded" type="text" [value]="vehicule.marque" disabled>
-        <input class="my-2 rounded" type="text" [value]="vehicule.immat" disabled>
-        <input class="my-2 rounded" type="text" [value]="vehicule.dateSortie" disabled>
-        <input class="my-2 rounded" type="text" [value]="vehicule.miseCirculation" disabled>
+        <input class="my-2 rounded form-control w-25" type="text" [value]="vehicule.idvehicule" disabled>
+        <input class="my-2 rounded form-control w-25" type="text" [(ngModel)]="marque" [value]="vehicule.marque" [disabled]="disabled">
+        <input class="my-2 rounded form-control w-25" type="text" [(ngModel)]="immat" [value]="vehicule.immat" [disabled]="disabled">
+        <input class="my-2 rounded form-control w-25" type="date" [(ngModel)]="dateSortie" [value]="vehicule.dateSortie" [disabled]="disabled">
+        <input class="my-2 rounded form-control w-25" type="date" [(ngModel)]="miseCirculation" [value]="vehicule.miseCirculation" [disabled]="disabled">
+        <select [(ngModel)]="iduserSelected" (ngModelChange)="userSelected()" class="my-2 form-select w-25" name="iduser" [hidden]="disabled">
+          <option *ngFor="let user of users" [value]="user.iduser">
+            {{ user.iduser + " --> " + user.nom + " " + user.prenom }}
+          </option>
+        </select>
+        <input type="text" *ngIf="iduser" [hidden]="!disabled"
+               disabled class="my-2 form-select w-25"
+              [value]='iduser + " --> " + nomUser + " " + prenomUser'>
     </div>
+
+  <div class="d-flex justify-content-center m-5">
+    <button (click)="deleteOneVehicule()" class="btn btn-danger mx-3" type="submit">Supprimer</button>
+    <button (click)="editOrSave()" class="btn mx-3"
+            [ngClass]="disabled ? 'btn-warning' : 'btn-success'"
+            type="submit">{{ disabled ? 'Modifier' : 'Sauvegarder' }}
+    </button>
+    <button (click)="changeDisabled()"
+            *ngIf="!disabled" class="btn btn-warning mx-3"
+            type="submit">Annuler
+    </button>
+  </div>
 </div>

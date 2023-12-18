@@ -3,6 +3,8 @@ import {UsersService} from "../../services/serviceUser/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersResponse} from "../../response/userResponse/users-response";
 import {UserRequest} from "../../request/requestUser/user-request";
+import {VehiculeResponse} from "../../response/vehiculeResponse/vehicule-response";
+import {VehiculesService} from "../../services/serviceVehicule/vehicules.service";
 
 @Component({
   selector: 'app-user-details',
@@ -17,14 +19,18 @@ export class UserDetailsComponent implements OnInit{
   prenom: string;
   disabled: boolean = true;
   userRequest: UserRequest;
+  idUserVehicule: number[] = [];
+  deleteUser = false;
 
   constructor(private userService: UsersService,
+              private vehiculeService: VehiculesService,
               private route: ActivatedRoute,
               private router: Router) {
   }
 
   ngOnInit(): void {
     this.getOneUserDetail();
+    this.getAllUsersOfVehicules()
   }
 
   editOrSave() {
@@ -58,13 +64,26 @@ export class UserDetailsComponent implements OnInit{
       })
   }
 
+  getAllUsersOfVehicules() {
+      this.vehiculeService.getAllData().subscribe((data: VehiculeResponse[]) => {
+          data.forEach((value: VehiculeResponse) => {
+              this.idUserVehicule.push(value.users.iduser)
+          });
+      })
+  }
+
   deleteOneUser() {
     this.route.params.subscribe(params => {
       this.iduser = params['id']
-      this.userService.deleteOneData(this.iduser).subscribe(() => {
-        this.router.navigate(["/users"])
-      })
+        if(this.idUserVehicule.includes(+this.iduser)) {
+          alert("Cette utilisateur possède un ou plusieurs véhicules, impossible de le supprimer.")
+        } else {
+          this.userService.deleteOneData(this.iduser).subscribe(() => {
+            this.router.navigate(["/users"])
+         })
+        }
     })
+
   }
 
 

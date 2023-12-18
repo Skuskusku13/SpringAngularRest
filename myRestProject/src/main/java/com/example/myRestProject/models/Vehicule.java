@@ -25,7 +25,7 @@ public class Vehicule {
 
     private String dateSortie;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "iduser")
     private Users users;
 

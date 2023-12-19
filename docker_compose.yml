@@ -1,0 +1,16 @@
+version: '3'
+services:
+    backend:
+      build: ./myRestProject
+      ports:
+        - "8080:8080"
+      depends_on:
+        - bdd
+    frontend:
+      build: ./frontRestProject
+      ports:
+        - "80:80"
+    bdd:
+      build: ./BDD
+      ports:
+        - "8889:3306"
